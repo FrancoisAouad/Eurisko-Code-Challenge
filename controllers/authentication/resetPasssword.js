@@ -4,6 +4,7 @@ import { setResetPasswordToken } from '../jwt/configJWT.js';
 import { verifyResetPasswordToken } from '../jwt/verifyJWT.js';
 import bcrypt from 'bcrypt';
 import nodemailer from '../../utils/nodemailer.js';
+import { getUser } from '../../utils/getUser.js';
 
 //SEND FORGOT PASSWORD EMAIL
 export const forgotPassword = async (req, res, next) => {
