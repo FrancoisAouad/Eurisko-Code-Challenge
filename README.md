@@ -63,16 +63,16 @@ npm start
 
 ## Table of Contents
 
-- [Config](https://github.com/FrancoisAouad/Eurisko-Code-Challenge-FrancoisAouad/tree/main/config)
+- [Config](https://github.com/FrancoisAouad/Eurisko-Code-Challenge-FrancoisAouad/tree/eurisko/config)
 
-- [Controllers](https://github.com/FrancoisAouad/Eurisko-Code-Challenge-FrancoisAouad/tree/main/controllers)
+- [Controllers](https://github.com/FrancoisAouad/Eurisko-Code-Challenge-FrancoisAouad/tree/eurisko/controllers)
 
-- [Middleware](https://github.com/FrancoisAouad/Eurisko-Code-Challenge-FrancoisAouad/tree/main/middleware)
+- [Middleware](https://github.com/FrancoisAouad/Eurisko-Code-Challenge-FrancoisAouad/tree/eurisko/middleware)
 
-- [Models](https://github.com/FrancoisAouad/Eurisko-Code-Challenge-FrancoisAouad/tree/main/models)
+- [Models](https://github.com/FrancoisAouad/Eurisko-Code-Challenge-FrancoisAouad/tree/eurisko/models)
 
-- [Routes](https://github.com/FrancoisAouad/Eurisko-Code-Challenge-FrancoisAouad/tree/main/routes)
+- [Routes](https://github.com/FrancoisAouad/Eurisko-Code-Challenge-FrancoisAouad/tree/eursiko/routes)
 
-- [Uploads](https://github.com/FrancoisAouad/Eurisko-Code-Challenge-FrancoisAouad/tree/main/uploads)
+- [Uploads](https://github.com/FrancoisAouad/Eurisko-Code-Challenge-FrancoisAouad/tree/eurisko/uploads)
 
-- [Utils](https://github.com/FrancoisAouad/Eurisko-Code-Challenge-FrancoisAouad/tree/main/utils)
+- [Utils](https://github.com/FrancoisAouad/Eurisko-Code-Challenge-FrancoisAouad/tree/eurisko/utils)
