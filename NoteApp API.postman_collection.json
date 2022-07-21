@@ -1,0 +1,946 @@
+{
+	"info": {
+		"_postman_id": "58756c27-5314-4be5-b60f-bc4b3841d881",
+		"name": "NoteApp API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"email\": \"admin@onlinecmail.com\",\r\n   \"password\": \"000000\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/v1/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{    \"name\":\"admin\",\r\n    \"email\": \"admin@onlinecmail.com\",\r\n    \"password\": \"000000\",\r\n    \"confirmPassword\":\"000000\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/v1/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh-Token",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTgzNDUxODMsImV4cCI6MTY1ODM0NjA4MywiYXVkIjoiNjJkODU1ZmQ0NDA1ZDA1YWQyZTk0Y2FiIiwiaXNzIjoiZXVyaXNrby10ZXN0LmNvbSJ9.KesCiJOyP3sXAkx8r99YcuCx_q6eBO6pEdu5eA8KfgM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \r\n   \"refreshToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTgzNDUxODMsImV4cCI6MTY4OTkwMjc4MywiYXVkIjoiNjJkODU1ZmQ0NDA1ZDA1YWQyZTk0Y2FiIiwiaXNzIjoiZXVyaXNrby10ZXN0LmNvbSJ9.o3t0Ljsha3S1CohZH3_0l56eiRKzWjfOL3bma_opswI\" \r\n } ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/v1/auth/refresh-token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"refresh-token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Forgot-Password",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTgzNDUxODMsImV4cCI6MTY1ODM0NjA4MywiYXVkIjoiNjJkODU1ZmQ0NDA1ZDA1YWQyZTk0Y2FiIiwiaXNzIjoiZXVyaXNrby10ZXN0LmNvbSJ9.KesCiJOyP3sXAkx8r99YcuCx_q6eBO6pEdu5eA8KfgM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/auth/forgot-password",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"forgot-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reset-Password",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTgzNDUxODMsImV4cCI6MTY1ODM0NjA4MywiYXVkIjoiNjJkODU1ZmQ0NDA1ZDA1YWQyZTk0Y2FiIiwiaXNzIjoiZXVyaXNrby10ZXN0LmNvbSJ9.KesCiJOyP3sXAkx8r99YcuCx_q6eBO6pEdu5eA8KfgM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\":\"000000\",\r\n  \"confirmPassword\":\"000000\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/v1/auth/reset-password/62d855fd4405d05ad2e94cab/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTgzNDU2NDMsImV4cCI6MTY1ODM0NjI0MywiYXVkIjoiNjJkODU1ZmQ0NDA1ZDA1YWQyZTk0Y2FiIiwiaXNzIjoiZXVyaXNrby10ZXN0LmNvbSJ9.Sen5gE38AW2LlZ2LR-Y7oofZF5kNR9G2VkcvXDr5Rtc",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"reset-password",
+								"62d855fd4405d05ad2e94cab",
+								"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTgzNDU2NDMsImV4cCI6MTY1ODM0NjI0MywiYXVkIjoiNjJkODU1ZmQ0NDA1ZDA1YWQyZTk0Y2FiIiwiaXNzIjoiZXVyaXNrby10ZXN0LmNvbSJ9.Sen5gE38AW2LlZ2LR-Y7oofZF5kNR9G2VkcvXDr5Rtc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTgzNDgwODYsImV4cCI6MTY1ODM0ODk4NiwiYXVkIjoiNjJkODU1ZmQ0NDA1ZDA1YWQyZTk0Y2FiIiwiaXNzIjoiZXVyaXNrby10ZXN0LmNvbSJ9.vsNlVAYeI_vU6zCkQFo7hV-0rUoNeianus0L7KdHMn4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " { \r\n   \"refreshToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTgzNDgwODYsImV4cCI6MTY4OTkwNTY4NiwiYXVkIjoiNjJkODU1ZmQ0NDA1ZDA1YWQyZTk0Y2FiIiwiaXNzIjoiZXVyaXNrby10ZXN0LmNvbSJ9.ZXsQlcTvrVps-wKJB8PWhuDmDjq_oJZeVZhsiAXOK04\" \r\n }\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/v1/auth/logout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Categories",
+			"item": [
+				{
+					"name": "Get Categories",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTgzNTIzMTksImV4cCI6MTY1ODM1MzIxOSwiYXVkIjoiNjJkNTU3YWY2ZjE5MzY5ZjU5NjFiYjMxIiwiaXNzIjoiZXVyaXNrby10ZXN0LmNvbSJ9.Vf7LZMrwqUUFCGFMj39NiQsyDjmmZrcBQJ9kSc6uYyo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/v1/categories",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Category",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTgzNTIzMTksImV4cCI6MTY1ODM1MzIxOSwiYXVkIjoiNjJkNTU3YWY2ZjE5MzY5ZjU5NjFiYjMxIiwiaXNzIjoiZXVyaXNrby10ZXN0LmNvbSJ9.Vf7LZMrwqUUFCGFMj39NiQsyDjmmZrcBQJ9kSc6uYyo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"categoryName\": \"Dummy Text\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/v1/category/add-Category",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"category",
+								"add-Category"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Category",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTgzNTE3OTUsImV4cCI6MTY1ODM1MjY5NSwiYXVkIjoiNjJkODU1ZmQ0NDA1ZDA1YWQyZTk0Y2FiIiwiaXNzIjoiZXVyaXNrby10ZXN0LmNvbSJ9.T_OvHVpxOu6ukt8DFCWU8kU59Dras5ytHf1aJ4V5V78",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"categoryName\":\"School and University\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/v1/category/edit-Category/62d870192819f42060365c36",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"category",
+								"edit-Category",
+								"62d870192819f42060365c36"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Category",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTgzNTE4NDIsImV4cCI6MTY1ODM1Mjc0MiwiYXVkIjoiNjJkODU1ZmQ0NDA1ZDA1YWQyZTk0Y2FiIiwiaXNzIjoiZXVyaXNrby10ZXN0LmNvbSJ9.K0hX3zu74IwK7_2D8em9erNnYsWTnc5LqEwgCBKm6YY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/v1/category/delete-Category/62d870192819f42060365c36",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"category",
+								"delete-Category",
+								"62d870192819f42060365c36"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Notes",
+			"item": [
+				{
+					"name": "Add Note",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTgzNTI4MzksImV4cCI6MTY1ODM1MzczOSwiYXVkIjoiNjJkODU1ZmQ0NDA1ZDA1YWQyZTk0Y2FiIiwiaXNzIjoiZXVyaXNrby10ZXN0LmNvbSJ9.9YpDtXlR1M9Mt9eKaJc3QSvVu4wl7g5xL6u4ixiskZk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "",
+									"type": "default"
+								},
+								{
+									"key": "content",
+									"value": "",
+									"type": "default"
+								},
+								{
+									"key": "tags",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "62d875612819f42060365c76",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/v1/notes/add-Notes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"notes",
+								"add-Notes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Note Image",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTgzNTMyMDgsImV4cCI6MTY1ODM1NDEwOCwiYXVkIjoiNjJkODU1ZmQ0NDA1ZDA1YWQyZTk0Y2FiIiwiaXNzIjoiZXVyaXNrby10ZXN0LmNvbSJ9.DENpp6fbqsJ7CFn8SG5hXw8HLc1fWCixE433iZ0dOIQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "hello world!",
+									"type": "default"
+								},
+								{
+									"key": "content",
+									"value": "Test note",
+									"type": "default"
+								},
+								{
+									"key": "tags",
+									"value": "Ruby",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "62d557af6f19369f5961bb31",
+									"type": "default"
+								},
+								{
+									"key": "tags",
+									"value": "Test",
+									"type": "text"
+								},
+								{
+									"key": "tags",
+									"value": "Image",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "Folders/Extra/b8f85ae6-d011-431e-995e-6657484f072d.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/v1/notes/add-Notes/images",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"notes",
+								"add-Notes",
+								"images"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Note Files",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTgzODQ2NzksImV4cCI6MTY1ODM4NTU3OSwiYXVkIjoiNjJkODU1ZmQ0NDA1ZDA1YWQyZTk0Y2FiIiwiaXNzIjoiZXVyaXNrby10ZXN0LmNvbSJ9.RslMbblXBS5kR9K-efqJV8URjee4XyQuMMmUfM1hZdc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "",
+									"type": "default"
+								},
+								{
+									"key": "content",
+									"value": "",
+									"type": "default"
+								},
+								{
+									"key": "tags",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "",
+									"type": "default"
+								},
+								{
+									"key": "tags",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "tags",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/v1/notes/add-Notes/files",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"notes",
+								"add-Notes",
+								"files"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Note Files & Image",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTgxMzYzNzgsImV4cCI6MTY1ODEzNzI3OCwiYXVkIjoiNjJjZmVlNzVkZjhmNDQ2YmY5YWJmYTU2IiwiaXNzIjoiZXVyaXNrby10ZXN0LmNvbSJ9.pL-EACyCqTaz_hDdplEL25y-q3kGrws-WJJDVvCGcLk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": []
+								},
+								{
+									"key": "title",
+									"value": "",
+									"type": "default"
+								},
+								{
+									"key": "content",
+									"value": "",
+									"type": "default"
+								},
+								{
+									"key": "tags",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "",
+									"type": "default"
+								},
+								{
+									"key": "tags",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "tags",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/v1/notes/add-Notes/images-files",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"notes",
+								"add-Notes",
+								"images-files"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Notes",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTgzOTAzNzEsImV4cCI6MTY1ODM5MTI3MSwiYXVkIjoiNjJkODU1ZmQ0NDA1ZDA1YWQyZTk0Y2FiIiwiaXNzIjoiZXVyaXNrby10ZXN0LmNvbSJ9.dgfd9--QbJJdFm4vZutwI1UVa8zOkxxkFhmeov9-2h4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/notes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"notes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Note byID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTgzNTM0ODUsImV4cCI6MTY1ODM1NDM4NSwiYXVkIjoiNjJkODU1ZmQ0NDA1ZDA1YWQyZTk0Y2FiIiwiaXNzIjoiZXVyaXNrby10ZXN0LmNvbSJ9.U2fL5am8iIhuzBdlc8uZYEKQ-WLl68EwCktbcSxQ7LI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/notes/62d875802819f42060365c7c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"notes",
+								"62d875802819f42060365c7c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search-Category",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTgzNTQ2NjAsImV4cCI6MTY1ODM1NTU2MCwiYXVkIjoiNjJkODU1ZmQ0NDA1ZDA1YWQyZTk0Y2FiIiwiaXNzIjoiZXVyaXNrby10ZXN0LmNvbSJ9.8GS9rMNsN8tRFHcfJuKI7mHr1x_y0L3T7r1-65ldn-s",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/notes/search-category/62d00922b6e08b3ac3debef3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"notes",
+								"search-category",
+								"62d00922b6e08b3ac3debef3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search-Tags",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTgzODg1MTEsImV4cCI6MTY1ODM4OTQxMSwiYXVkIjoiNjJkODU1ZmQ0NDA1ZDA1YWQyZTk0Y2FiIiwiaXNzIjoiZXVyaXNrby10ZXN0LmNvbSJ9.03x2E_o4GDiA9ic64NN5wrnjma09zC6H4UWKOBKzwLU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"tag\":[\"Eurisko\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/v1/notes/search-tags",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"notes",
+								"search-tags"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Notes",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTgzODk0MzMsImV4cCI6MTY1ODM5MDMzMywiYXVkIjoiNjJkODU1ZmQ0NDA1ZDA1YWQyZTk0Y2FiIiwiaXNzIjoiZXVyaXNrby10ZXN0LmNvbSJ9.Fz0VSxmR5Ega2j9kP4j-KVA6W5DOUo_HJXfzCqoSVQg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "content",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "tags",
+									"value": "",
+									"type": "default"
+								},
+								{
+									"key": "title",
+									"value": "",
+									"type": "default"
+								},
+								{
+									"key": "tags",
+									"value": "",
+									"type": "default"
+								},
+								{
+									"key": "tags",
+									"value": "",
+									"type": "default"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": []
+								},
+								{
+									"key": "tags",
+									"value": "",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/v1/notes/edit-Note/62d876f02819f42060365c8a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"notes",
+								"edit-Note",
+								"62d876f02819f42060365c8a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Note",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTgzOTAzNzEsImV4cCI6MTY1ODM5MTI3MSwiYXVkIjoiNjJkODU1ZmQ0NDA1ZDA1YWQyZTk0Y2FiIiwiaXNzIjoiZXVyaXNrby10ZXN0LmNvbSJ9.dgfd9--QbJJdFm4vZutwI1UVa8zOkxxkFhmeov9-2h4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/v1/notes/delete-Note/62d876f02819f42060365c8a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"notes",
+								"delete-Note",
+								"62d876f02819f42060365c8a"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
