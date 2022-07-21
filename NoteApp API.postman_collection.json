@@ -15,7 +15,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n   \"email\": \"admin@onlinecmail.com\",\r\n   \"password\": \"000000\"\r\n}",
+							"raw": "{\r\n   \"email\": \"\",\r\n   \"password\": \"000000\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -46,7 +46,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{    \"name\":\"admin\",\r\n    \"email\": \"admin@onlinecmail.com\",\r\n    \"password\": \"000000\",\r\n    \"confirmPassword\":\"000000\"\r\n\r\n}",
+							"raw": "{    \"name\":\"\",\r\n    \"email\": \"\",\r\n    \"password\": \"\",\r\n    \"confirmPassword\":\"\"\r\n\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -243,7 +243,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTgzNTIzMTksImV4cCI6MTY1ODM1MzIxOSwiYXVkIjoiNjJkNTU3YWY2ZjE5MzY5ZjU5NjFiYjMxIiwiaXNzIjoiZXVyaXNrby10ZXN0LmNvbSJ9.Vf7LZMrwqUUFCGFMj39NiQsyDjmmZrcBQJ9kSc6uYyo",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTg0MTYyNDUsImV4cCI6MTY1ODQxNzE0NSwiYXVkIjoiNjJkOTJiM2RlMjdlYTI1MTY3OWEyM2FlIiwiaXNzIjoiZXVyaXNrby10ZXN0LmNvbSJ9.oX-kOF4a1mf8qSbVFsXEzI4k3EiRtHX3BvxGdd4eg7k",
 									"type": "string"
 								}
 							]
@@ -278,7 +278,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTgzNTIzMTksImV4cCI6MTY1ODM1MzIxOSwiYXVkIjoiNjJkNTU3YWY2ZjE5MzY5ZjU5NjFiYjMxIiwiaXNzIjoiZXVyaXNrby10ZXN0LmNvbSJ9.Vf7LZMrwqUUFCGFMj39NiQsyDjmmZrcBQJ9kSc6uYyo",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTg0MTM1NzAsImV4cCI6MTY1ODQxNDQ3MCwiYXVkIjoiNjJkOTJiM2RlMjdlYTI1MTY3OWEyM2FlIiwiaXNzIjoiZXVyaXNrby10ZXN0LmNvbSJ9.TBk-wL6HwXLEJWhGwOxKQMHTP1QssTI-F0Uoak1LSXM",
 									"type": "string"
 								}
 							]
@@ -287,7 +287,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"categoryName\": \"Dummy Text\"\r\n}",
+							"raw": "{\r\n  \"categoryName\": \"Programming\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -411,7 +411,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTgzNTI4MzksImV4cCI6MTY1ODM1MzczOSwiYXVkIjoiNjJkODU1ZmQ0NDA1ZDA1YWQyZTk0Y2FiIiwiaXNzIjoiZXVyaXNrby10ZXN0LmNvbSJ9.9YpDtXlR1M9Mt9eKaJc3QSvVu4wl7g5xL6u4ixiskZk",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTg0MTYyNDUsImV4cCI6MTY1ODQxNzE0NSwiYXVkIjoiNjJkOTJiM2RlMjdlYTI1MTY3OWEyM2FlIiwiaXNzIjoiZXVyaXNrby10ZXN0LmNvbSJ9.oX-kOF4a1mf8qSbVFsXEzI4k3EiRtHX3BvxGdd4eg7k",
 									"type": "string"
 								}
 							]
@@ -438,8 +438,23 @@
 								},
 								{
 									"key": "category",
-									"value": "62d875612819f42060365c76",
+									"value": "62d96222a03ee38a51e51b11",
 									"type": "default"
+								},
+								{
+									"key": "tags",
+									"value": "",
+									"type": "default"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": []
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": []
 								}
 							]
 						},
@@ -461,234 +476,6 @@
 					"response": []
 				},
 				{
-					"name": "Add Note Image",
-					"protocolProfileBehavior": {
-						"disabledSystemHeaders": {}
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTgzNTMyMDgsImV4cCI6MTY1ODM1NDEwOCwiYXVkIjoiNjJkODU1ZmQ0NDA1ZDA1YWQyZTk0Y2FiIiwiaXNzIjoiZXVyaXNrby10ZXN0LmNvbSJ9.DENpp6fbqsJ7CFn8SG5hXw8HLc1fWCixE433iZ0dOIQ",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "title",
-									"value": "hello world!",
-									"type": "default"
-								},
-								{
-									"key": "content",
-									"value": "Test note",
-									"type": "default"
-								},
-								{
-									"key": "tags",
-									"value": "Ruby",
-									"type": "text"
-								},
-								{
-									"key": "category",
-									"value": "62d557af6f19369f5961bb31",
-									"type": "default"
-								},
-								{
-									"key": "tags",
-									"value": "Test",
-									"type": "text"
-								},
-								{
-									"key": "tags",
-									"value": "Image",
-									"type": "text"
-								},
-								{
-									"key": "image",
-									"type": "file",
-									"src": "Folders/Extra/b8f85ae6-d011-431e-995e-6657484f072d.jpg"
-								}
-							]
-						},
-						"url": {
-							"raw": "http://localhost:8000/api/v1/notes/add-Notes/images",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"api",
-								"v1",
-								"notes",
-								"add-Notes",
-								"images"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Add Note Files",
-					"protocolProfileBehavior": {
-						"disabledSystemHeaders": {}
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTgzODQ2NzksImV4cCI6MTY1ODM4NTU3OSwiYXVkIjoiNjJkODU1ZmQ0NDA1ZDA1YWQyZTk0Y2FiIiwiaXNzIjoiZXVyaXNrby10ZXN0LmNvbSJ9.RslMbblXBS5kR9K-efqJV8URjee4XyQuMMmUfM1hZdc",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "title",
-									"value": "",
-									"type": "default"
-								},
-								{
-									"key": "content",
-									"value": "",
-									"type": "default"
-								},
-								{
-									"key": "tags",
-									"value": "",
-									"type": "text"
-								},
-								{
-									"key": "category",
-									"value": "",
-									"type": "default"
-								},
-								{
-									"key": "tags",
-									"value": "",
-									"type": "text"
-								},
-								{
-									"key": "tags",
-									"value": "",
-									"type": "text"
-								},
-								{
-									"key": "file",
-									"type": "file",
-									"src": []
-								}
-							]
-						},
-						"url": {
-							"raw": "http://localhost:8000/api/v1/notes/add-Notes/files",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"api",
-								"v1",
-								"notes",
-								"add-Notes",
-								"files"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Add Note Files & Image",
-					"protocolProfileBehavior": {
-						"disabledSystemHeaders": {}
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTgxMzYzNzgsImV4cCI6MTY1ODEzNzI3OCwiYXVkIjoiNjJjZmVlNzVkZjhmNDQ2YmY5YWJmYTU2IiwiaXNzIjoiZXVyaXNrby10ZXN0LmNvbSJ9.pL-EACyCqTaz_hDdplEL25y-q3kGrws-WJJDVvCGcLk",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "image",
-									"type": "file",
-									"src": []
-								},
-								{
-									"key": "title",
-									"value": "",
-									"type": "default"
-								},
-								{
-									"key": "content",
-									"value": "",
-									"type": "default"
-								},
-								{
-									"key": "tags",
-									"value": "",
-									"type": "text"
-								},
-								{
-									"key": "category",
-									"value": "",
-									"type": "default"
-								},
-								{
-									"key": "tags",
-									"value": "",
-									"type": "text"
-								},
-								{
-									"key": "tags",
-									"value": "",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "http://localhost:8000/api/v1/notes/add-Notes/images-files",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"api",
-								"v1",
-								"notes",
-								"add-Notes",
-								"images-files"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "Get Notes",
 					"request": {
 						"auth": {
@@ -696,7 +483,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTgzOTAzNzEsImV4cCI6MTY1ODM5MTI3MSwiYXVkIjoiNjJkODU1ZmQ0NDA1ZDA1YWQyZTk0Y2FiIiwiaXNzIjoiZXVyaXNrby10ZXN0LmNvbSJ9.dgfd9--QbJJdFm4vZutwI1UVa8zOkxxkFhmeov9-2h4",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTg0MTYyNDUsImV4cCI6MTY1ODQxNzE0NSwiYXVkIjoiNjJkOTJiM2RlMjdlYTI1MTY3OWEyM2FlIiwiaXNzIjoiZXVyaXNrby10ZXN0LmNvbSJ9.oX-kOF4a1mf8qSbVFsXEzI4k3EiRtHX3BvxGdd4eg7k",
 									"type": "string"
 								}
 							]
@@ -727,7 +514,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTgzNTM0ODUsImV4cCI6MTY1ODM1NDM4NSwiYXVkIjoiNjJkODU1ZmQ0NDA1ZDA1YWQyZTk0Y2FiIiwiaXNzIjoiZXVyaXNrby10ZXN0LmNvbSJ9.U2fL5am8iIhuzBdlc8uZYEKQ-WLl68EwCktbcSxQ7LI",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTg0MDAzNTEsImV4cCI6MTY1ODQwMTI1MSwiYXVkIjoiNjJkOTJiM2RlMjdlYTI1MTY3OWEyM2FlIiwiaXNzIjoiZXVyaXNrby10ZXN0LmNvbSJ9.pA1GSU7ABhbCDSjq3xQ_pDHB23cArYOA-XNgE3YXUlg",
 									"type": "string"
 								}
 							]
@@ -735,7 +522,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8000/api/v1/notes/62d875802819f42060365c7c",
+							"raw": "http://localhost:8000/api/v1/notes/62d92bd3e27ea251679a23c4",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -745,7 +532,7 @@
 								"api",
 								"v1",
 								"notes",
-								"62d875802819f42060365c7c"
+								"62d92bd3e27ea251679a23c4"
 							]
 						}
 					},
@@ -759,7 +546,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTgzNTQ2NjAsImV4cCI6MTY1ODM1NTU2MCwiYXVkIjoiNjJkODU1ZmQ0NDA1ZDA1YWQyZTk0Y2FiIiwiaXNzIjoiZXVyaXNrby10ZXN0LmNvbSJ9.8GS9rMNsN8tRFHcfJuKI7mHr1x_y0L3T7r1-65ldn-s",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTg0MTE3NTQsImV4cCI6MTY1ODQxMjY1NCwiYXVkIjoiNjJkOTJiM2RlMjdlYTI1MTY3OWEyM2FlIiwiaXNzIjoiZXVyaXNrby10ZXN0LmNvbSJ9.dyQ1IuX7Y2q4m1TOzdo3qhQkKIFFWnQIYSKEKB9Pz2w",
 									"type": "string"
 								}
 							]
@@ -767,7 +554,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8000/api/v1/notes/search-category/62d00922b6e08b3ac3debef3",
+							"raw": "http://localhost:8000/api/v1/notes/search-category/62d92b7ce27ea251679a23ba",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -778,7 +565,7 @@
 								"v1",
 								"notes",
 								"search-category",
-								"62d00922b6e08b3ac3debef3"
+								"62d92b7ce27ea251679a23ba"
 							]
 						}
 					},
@@ -792,7 +579,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTgzODg1MTEsImV4cCI6MTY1ODM4OTQxMSwiYXVkIjoiNjJkODU1ZmQ0NDA1ZDA1YWQyZTk0Y2FiIiwiaXNzIjoiZXVyaXNrby10ZXN0LmNvbSJ9.03x2E_o4GDiA9ic64NN5wrnjma09zC6H4UWKOBKzwLU",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTg0MTE3NTQsImV4cCI6MTY1ODQxMjY1NCwiYXVkIjoiNjJkOTJiM2RlMjdlYTI1MTY3OWEyM2FlIiwiaXNzIjoiZXVyaXNrby10ZXN0LmNvbSJ9.dyQ1IuX7Y2q4m1TOzdo3qhQkKIFFWnQIYSKEKB9Pz2w",
 									"type": "string"
 								}
 							]
@@ -801,7 +588,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"tag\":[\"Eurisko\"]\r\n}",
+							"raw": "{\r\n    \"tag\":[\"A\"]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -833,7 +620,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTgzODk0MzMsImV4cCI6MTY1ODM5MDMzMywiYXVkIjoiNjJkODU1ZmQ0NDA1ZDA1YWQyZTk0Y2FiIiwiaXNzIjoiZXVyaXNrby10ZXN0LmNvbSJ9.Fz0VSxmR5Ega2j9kP4j-KVA6W5DOUo_HJXfzCqoSVQg",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTg0MDAzNTEsImV4cCI6MTY1ODQwMTI1MSwiYXVkIjoiNjJkOTJiM2RlMjdlYTI1MTY3OWEyM2FlIiwiaXNzIjoiZXVyaXNrby10ZXN0LmNvbSJ9.pA1GSU7ABhbCDSjq3xQ_pDHB23cArYOA-XNgE3YXUlg",
 									"type": "string"
 								}
 							]
@@ -844,34 +631,9 @@
 							"mode": "formdata",
 							"formdata": [
 								{
-									"key": "content",
-									"value": "",
-									"type": "text"
-								},
-								{
 									"key": "tags",
 									"value": "",
 									"type": "default"
-								},
-								{
-									"key": "title",
-									"value": "",
-									"type": "default"
-								},
-								{
-									"key": "tags",
-									"value": "",
-									"type": "default"
-								},
-								{
-									"key": "tags",
-									"value": "",
-									"type": "default"
-								},
-								{
-									"key": "image",
-									"type": "file",
-									"src": []
 								},
 								{
 									"key": "tags",
@@ -881,7 +643,7 @@
 							]
 						},
 						"url": {
-							"raw": "http://localhost:8000/api/v1/notes/edit-Note/62d876f02819f42060365c8a",
+							"raw": "http://localhost:8000/api/v1/notes/edit-Note/62d92bd3e27ea251679a23c4",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -892,7 +654,7 @@
 								"v1",
 								"notes",
 								"edit-Note",
-								"62d876f02819f42060365c8a"
+								"62d92bd3e27ea251679a23c4"
 							]
 						}
 					},
