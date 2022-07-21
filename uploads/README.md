@@ -1,6 +1,6 @@
 ## Uploads
 
-Local storage to store file uploads and save their location the mongo database.
+Local storage to store file uploads and save their location the mongo database. The img and files directories will be created after req.
 
 -**file**: Contains all the document attachements for notes and other potential features
 
