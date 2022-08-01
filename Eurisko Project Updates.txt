@@ -1,0 +1,21 @@
+1-fix send email
+2-remove promises in jwt
+3-make search&filter&sort in 1 function
+4-add pagination
+5-let admin add categories 
+6-remove atob from  getuser
+7-add more comments
+8-remove $eq
+9-remove depricated queries and use updateOne/DeleteOne instead
+10-add updatedAt which will be changed every time field and sorted by this field
+11-add isadmin to user model and add middleware
+12-fix indexing by adding compund schema level indexes instead field lvl indexes for specific queries
+13-fix reset password userid by not adding it to url 
+14-show admin how many times each user has used a certain tag and category while showing their name and id using aggregation pipelines
+
+
+
+
+
+
+

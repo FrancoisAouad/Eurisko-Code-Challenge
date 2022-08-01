@@ -2,6 +2,62 @@ import Category from '../../models/category.js';
 import { categorySchema } from '../../middleware/validation/categoryValidation.js';
 import user from '../../models/user.js';
 import { getUser } from '../../utils/getUser.js';
+import Note from '../../models/notes.js';
+
+//DELETE CATEGORY
+export const deleteCategory = async (req, res, next) => {
+    try {
+        const categoryID = req.params.categoryId;
+        //get logged in user
+        const authHeader = req.headers['authorization'];
+        const id = getUser(authHeader);
+        //check if category exists
+        const category = await Category.find({
+            $and: [{ creatorID: id }, { _id: categoryID }],
+        });
+        //return message if it doesnt
+        if (!category)
+            return res.status(404).json({
+                success: false,
+                error: 'NotFound',
+                message: 'No such category found.',
+            });
+
+        //find all notes that have used the category that is about to be deleted
+        const notes = await Note.find({
+            $and: [{ creatorID: id }, { category: categoryID }],
+        });
+
+        //if the user has used this category at least once
+        if (notes.length > 0) {
+            //delete all notes that have used it
+            const del = await Note.deleteMany({
+                $and: [{ creatorID: id }, { category: categoryID }],
+            });
+            //then delete the category
+            const delCateg = await Category.deleteOne({
+                $and: [{ creatorID: id }, { _id: categoryID }],
+            });
+
+            return res.status(200).json({
+                success: true,
+                message: `All notes with ${category.categoryName} category have been deleted.`,
+            });
+        } else {
+            //if the category was never used, delete category directly
+            const delCateg = await Category.deleteOne({
+                $and: [{ creatorID: id }, { _id: categoryID }],
+            });
+
+            return res.status(200).json({
+                success: true,
+                message: 'Category deleted.',
+            });
+        }
+    } catch (e) {
+        next(e);
+    }
+};
 
 //ADD CATEGORY
 export const addCategory = async (req, res, next) => {
@@ -34,63 +90,37 @@ export const addCategory = async (req, res, next) => {
         res.status(201).json({
             success: true,
             message: 'New Category created!',
-            data: newcategory,
+            category: newcategory,
         });
     } catch (e) {
         next(e);
     }
 };
-//DELETE CATEGORY
-export const deleteCategory = async (req, res, next) => {
-    try {
-        //get specific category id
-        const id = req.params.categoryId;
 
-        const category = await Category.findOne({ _id: id });
-
-        //return not found
-        if (!category) {
-            return res.status(404).json({
-                success: false,
-                error: 'NotFound',
-                message: 'Category not found',
-            });
-        } else {
-            //delete category if it exists
-            const deleteCategory = await Category.deleteOne({ _id: id });
-
-            res.status(201).json({
-                success: true,
-                message: 'Successfully Deleted',
-                data: category,
-            });
-        }
-    } catch (e) {
-        next(e);
-    }
-};
 //FIND ALL CATEGORIES
 export const getCategories = async (req, res, next) => {
     try {
         const authHeader = req.headers['authorization'];
         const id = getUser(authHeader);
 
-        const categories = await Category.find({ creatorID: { $eq: id } });
+        const categories = await Category.find({ creatorID: id }).sort({
+            updatedDate: -1,
+        });
         res.status(200).json({
             success: true,
             count: categories.length,
-            data: categories,
+            categories: categories,
         });
     } catch (e) {
         next(e);
     }
 };
-//UPDATE CATEGORY
+// UPDATE CATEGORY
 export const editCategory = async (req, res, next) => {
     try {
         //validate updated user input
         const newCategory = await categorySchema.validateAsync(req.body);
-        const category = await Category.findByIdAndUpdate(
+        const category = await Category.updateOne(
             req.params.categoryId,
             newCategory,
             {
@@ -102,7 +132,7 @@ export const editCategory = async (req, res, next) => {
         res.status(200).json({
             success: true,
             message: 'Category updated!',
-            data: category,
+            category: category,
         });
 
         if (!category)

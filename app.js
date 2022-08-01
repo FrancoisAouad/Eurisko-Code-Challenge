@@ -6,6 +6,7 @@ import bodyParser from 'body-parser';
 import corsConfig from './config/corsConfig.js';
 import authRoutes from './routes/auth.js';
 import noteRoutes from './routes/notes.js';
+import adminRoutes from './routes/admin.js';
 import categoryRoutes from './routes/category.js';
 import './config/mongoCon.js';
 import './config/redisCon.js';
@@ -37,6 +38,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1', noteRoutes);
 app.use('/api/v1', categoryRoutes);
+app.use('/api/v1/admin', adminRoutes);
 
 //ERROR HANDLERS
 app.use(sendError);

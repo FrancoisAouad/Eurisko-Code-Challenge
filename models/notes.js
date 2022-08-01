@@ -4,11 +4,11 @@ const Schema = mongoose.Schema;
 const noteSchema = new Schema({
     title: {
         type: String,
-        index: true,
+        // index: true,
     },
     content: {
         type: String,
-        index: true,
+        // index: true,
     },
     tags: [{ type: String, index: true }],
     imageLocation: [
@@ -26,13 +26,13 @@ const noteSchema = new Schema({
     category: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'category',
-        index: true,
+        // index: true,
     },
 
     creatorID: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user',
-        index: true,
+        // index: true,
     },
     creatorName: {
         type: String,
@@ -40,10 +40,22 @@ const noteSchema = new Schema({
     creatorEmail: {
         type: String,
     },
-    date: {
+    createdDate: {
+        type: Date,
+        default: Date.now(),
+    },
+    updatedDate: {
         type: Date,
         default: Date.now(),
     },
 });
-
+//index for getNotes
+noteSchema.index({ category: -1, creatorID: -1, tags: -1 });
+noteSchema.index({ creatorID: -1, tags: -1 });
+noteSchema.index({ category: -1, creatorID: -1 });
+//compund schema index for aggregation
+noteSchema.index({
+    creatorID: -1,
+    creatorName: -1,
+});
 export default mongoose.model('notes', noteSchema);

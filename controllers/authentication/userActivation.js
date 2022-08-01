@@ -12,12 +12,13 @@ export const verifyEmail = async (req, res, next) => {
             user.isVerified = true;
 
             await user.save();
-
+            //send message that req was successful
             return res.status(200).json({
                 success: true,
                 message: 'Email Successfully Verified!',
             });
         } else {
+            //return error message if user not found in db
             return res.status(401).json({
                 success: false,
                 error: 'Unauthorized',

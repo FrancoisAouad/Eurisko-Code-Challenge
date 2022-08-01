@@ -31,10 +31,8 @@ export const register = async (req, res, next) => {
         user.emailToken = newToken;
         const savedUser = await user.save();
         //generate access and refresh token by saving calling the methods and saving in variables
-        const accessToken = await setAccessToken(savedUser.id);
+        const accessToken = setAccessToken(savedUser.id);
         const refreshToken = await setRefreshToken(savedUser.id);
-        //send jwt tokens to client
-        res.status(200).send({ accessToken, refreshToken });
 
         //ACTIVATION EMAIL TEMPLATE
         nodemailer({
@@ -49,6 +47,8 @@ export const register = async (req, res, next) => {
           <br/>
         <a href="http://${req.headers.host}/api/v1/auth/verify-email?token=${user.emailToken}">Click here to verify</a>`,
         });
+        //send jwt tokens to client
+        res.status(200).send({ accessToken, refreshToken });
     } catch (e) {
         if (e.isJoi === true) e.status = 422;
         next(e);
@@ -57,6 +57,7 @@ export const register = async (req, res, next) => {
 //LOGIN
 export const login = async (req, res, next) => {
     try {
+        //validate input
         const result = await loginSchema.validateAsync(req.body);
         //check if email exists
         const user = await User.findOne({ email: result.email });
@@ -70,14 +71,15 @@ export const login = async (req, res, next) => {
         const isMatch = await user.isValidPassword(result.password);
 
         if (isMatch === false)
-            // throw new createError.Unauthorized('Invalid 0000');
             return res.status(401).json({
                 error: 'Unauthorized',
                 message: 'Invalid Email or Password',
             });
         //generate access and refresh token by saving calling the methods and saving in variables
-        const accessToken = await setAccessToken(user.id);
+        const accessToken = setAccessToken(user.id);
+        // console.log(accessToken);
         const refreshToken = await setRefreshToken(user.id);
+        // console.log(refreshToken);
 
         res.status(200).send({ accessToken, refreshToken });
     } catch (e) {
@@ -89,18 +91,18 @@ export const login = async (req, res, next) => {
 export const refreshToken = async (req, res, next) => {
     try {
         const { refreshToken } = req.body;
-        //throw error if refresh token isnt found
+        //return error if refresh token isnt found
         if (!refreshToken)
             return res.status(400).json({
                 success: false,
                 error: 'BadRequest',
                 message: 'Cannot verify credentials',
             });
-        // throw createError.BadRequest();
+
         //else verify the current token
         const userId = await verifyRefreshToken(refreshToken);
         //if it passes then generate new tokens and send them to the user again
-        const accessToken = await setAccessToken(userId);
+        const accessToken = setAccessToken(userId);
         const refToken = await setRefreshToken(userId);
 
         res.status(200).send({
@@ -116,14 +118,14 @@ export const logout = async (req, res, next) => {
     try {
         //check refresh token
         const { refreshToken } = req.body;
-
+        //return error if not found
         if (!refreshToken)
             return res.status(400).json({
                 success: false,
                 error: 'BadRequest',
                 message: 'Cannot verify credentials',
             });
-        // throw createError.BadRequest();
+        //verify the refresh token if found
         const userId = await verifyRefreshToken(refreshToken);
 
         //delete refresh token to logout

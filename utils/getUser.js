@@ -1,9 +1,12 @@
-import atob from 'atob';
+import jwt from 'jsonwebtoken';
 //reusable function to get logged in user
 export function getUser(authHeader) {
-    //decoded token and parse it using atob
-    const payload = JSON.parse(atob(authHeader.split('.')[1]));
-    //check payload for userID
-    const id = payload.aud;
+    //split auth header to get bearer token
+    const token = authHeader.split(' ')[1];
+    //verify the token and decoded it using
+    const decoded = jwt.verify(token, process.env.SECRET_ACCESS_TOKEN);
+    //get the id field from the decoded token
+    const id = decoded.aud;
+    //return the id value
     return id;
 }

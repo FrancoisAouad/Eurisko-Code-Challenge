@@ -12,18 +12,15 @@ import { isCategoryPermitted } from '../middleware/secure/isPermitted.js';
 
 const router = express.Router();
 
-//-----------------------CATEGORIES-----------------------//
-
-/*-------CREATE-------*/
 router.post(
     '/category/add-Category',
     verifyAccessToken,
     isEmailVerified,
     addCategory
 );
-/*-------READ-------*/
+
 router.get('/categories', verifyAccessToken, isEmailVerified, getCategories);
-/*-------UPDATE-------*/
+
 router.put(
     '/category/edit-Category/:categoryId',
     verifyAccessToken,
@@ -31,7 +28,7 @@ router.put(
     isCategoryPermitted,
     editCategory
 );
-/*-------DELETE-------*/
+
 router.delete(
     '/category/delete-Category/:categoryId',
     verifyAccessToken,

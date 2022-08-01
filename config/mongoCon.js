@@ -1,8 +1,8 @@
 import mongoose from 'mongoose';
-
+//mongodb+srv://francois:frank123@test.i0yxd.mongodb.net/?retryWrites=true&w=majority
 mongoose
     .connect(
-        'mongodb://francois:frank123@test-shard-00-00.i0yxd.mongodb.net:27017,test-shard-00-01.i0yxd.mongodb.net:27017,test-shard-00-02.i0yxd.mongodb.net:27017/?ssl=true&replicaSet=atlas-f6mr88-shard-0&authSource=admin&retryWrites=true&w=majority',
+        'mongodb+srv://francois:frank123@test.i0yxd.mongodb.net/?retryWrites=true&w=majority',
         {
             dbName: process.env.DB_NAME,
         }

@@ -2,6 +2,7 @@ import User from '../../models/user.js';
 import Notes from '../../models/notes.js';
 import Category from '../../models/category.js';
 import { getUser } from '../../utils/getUser.js';
+
 export const isCategoryPermitted = async (req, res, next) => {
     try {
         const authHeader = req.headers['authorization'];

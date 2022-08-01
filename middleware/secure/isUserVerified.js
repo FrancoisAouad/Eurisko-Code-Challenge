@@ -1,5 +1,6 @@
 import User from '../../models/user.js';
 import { getUser } from '../../utils/getUser.js';
+
 export const isEmailVerified = async (req, res, next) => {
     try {
         //get access token from headers
