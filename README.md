@@ -71,7 +71,7 @@ npm start
 
 - [Models](https://github.com/FrancoisAouad/Eurisko-Code-Challenge-FrancoisAouad/tree/eurisko/models)
 
-- [Routes](https://github.com/FrancoisAouad/Eurisko-Code-Challenge-FrancoisAouad/tree/eursiko/routes)
+- [Routes](https://github.com/FrancoisAouad/Eurisko-Code-Challenge-FrancoisAouad/tree/eurisko/routes)
 
 - [Uploads](https://github.com/FrancoisAouad/Eurisko-Code-Challenge-FrancoisAouad/tree/eurisko/uploads)
 
