@@ -26,10 +26,6 @@ const categorySchema = new Schema({
     creatorEmail: {
         type: String,
     },
-    createdAt: {
-        type: Date,
-        default: Date.now(),
-    },
 });
 //for aggregation in admin.js
 categorySchema.index({

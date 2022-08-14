@@ -17,9 +17,9 @@ const router = express.Router();
 
 router.post('/login', login);
 router.post('/register', register);
-router.post('/refresh-token', verifyAccessToken, refreshToken);
+router.post('/refreshToken', verifyAccessToken, refreshToken);
 router.post(
-    '/forgot-password',
+    '/forgotPassword',
     verifyAccessToken,
     isEmailVerified,
     forgotPassword
@@ -27,8 +27,8 @@ router.post(
 
 router.delete('/logout', verifyAccessToken, isEmailVerified, logout);
 
-router.get('/verify-email', verifyEmail);
+router.get('/verify', verifyEmail);
 
-router.patch('/reset-password/:token', resetPassword);
+router.patch('/resetPassword/:token', resetPassword);
 
 export default router;

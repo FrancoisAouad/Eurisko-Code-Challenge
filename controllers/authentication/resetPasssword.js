@@ -33,7 +33,7 @@ export const forgotPassword = async (req, res, next) => {
         <br/>
             <p>Your reset password link is available below.</p>
             <br/>
-            <a href="http://${req.headers.host}/api/v1/auth/reset-password/${passwordToken}">Reset</a>`,
+            <a href="http://${req.headers.host}/api/v1/auth/resetPassword/${passwordToken}">Reset</a>`,
             });
         }
         //send message that email was sent

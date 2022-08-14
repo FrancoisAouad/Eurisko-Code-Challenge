@@ -4,13 +4,13 @@ const Schema = mongoose.Schema;
 const noteSchema = new Schema({
     title: {
         type: String,
-        // index: true,
+        required: true,
     },
     content: {
         type: String,
-        // index: true,
     },
-    tags: [{ type: String, index: true }],
+    // tags: [{ type: String }],
+    tags: [{ type: mongoose.Schema.Types.ObjectId, ref: 'tags' }],
     imageLocation: [
         {
             type: String,
@@ -23,16 +23,14 @@ const noteSchema = new Schema({
             default: null,
         },
     ],
-    category: {
+    categoryID: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'category',
-        // index: true,
     },
 
     creatorID: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: mongoose.Types.ObjectId,
         ref: 'user',
-        // index: true,
     },
     creatorName: {
         type: String,

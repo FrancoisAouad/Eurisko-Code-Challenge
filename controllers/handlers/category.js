@@ -13,7 +13,8 @@ export const deleteCategory = async (req, res, next) => {
         const id = getUser(authHeader);
         //check if category exists
         const category = await Category.find({
-            $and: [{ creatorID: id }, { _id: categoryID }],
+            creatorID: id,
+            _id: categoryID,
         });
         //return message if it doesnt
         if (!category)
@@ -25,18 +26,21 @@ export const deleteCategory = async (req, res, next) => {
 
         //find all notes that have used the category that is about to be deleted
         const notes = await Note.find({
-            $and: [{ creatorID: id }, { category: categoryID }],
+            creatorID: id,
+            category: categoryID,
         });
 
         //if the user has used this category at least once
         if (notes.length > 0) {
             //delete all notes that have used it
-            const del = await Note.deleteMany({
-                $and: [{ creatorID: id }, { category: categoryID }],
+            await Note.deleteMany({
+                creatorID: id,
+                category: categoryID,
             });
             //then delete the category
-            const delCateg = await Category.deleteOne({
-                $and: [{ creatorID: id }, { _id: categoryID }],
+            await Category.deleteOne({
+                creatorID: id,
+                _id: categoryID,
             });
 
             return res.status(200).json({
@@ -45,8 +49,9 @@ export const deleteCategory = async (req, res, next) => {
             });
         } else {
             //if the category was never used, delete category directly
-            const delCateg = await Category.deleteOne({
-                $and: [{ creatorID: id }, { _id: categoryID }],
+            await Category.deleteOne({
+                creatorID: id,
+                _id: categoryID,
             });
 
             return res.status(200).json({

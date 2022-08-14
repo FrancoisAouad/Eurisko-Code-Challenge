@@ -1,3 +1,18 @@
+**Current Updates 14/8/2022****
+
+1-added all 4 aggregations to admin controller
+2-added user indexes
+3-removed $and & $eq
+4-refactored createNote function
+5-added Service folder and files for creatNotes
+6-changed tags field to ref mongoIDs
+9-added creatorsID field to tag document since it is a many to many relationship
+10-updated getNotes using conditional match
+11-fixed pagination by sending totalRecords, page, limit and TotalPages
+12-fixed route naming by removing - and dynamically changing common endpoint name
+
+****Old Updates 1/8/2022****
+
 1-fix send email
 2-remove promises in jwt
 3-make search&filter&sort in 1 function

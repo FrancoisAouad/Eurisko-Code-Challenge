@@ -12,22 +12,20 @@ import {
 import { isNotePermitted } from '../middleware/secure/isPermitted.js';
 
 const router = express.Router();
+const path = 'notes';
 
-router.post('/notes/add-Notes', verifyAccessToken, isEmailVerified, createNote);
-
-router.get('/notes/:noteId', verifyAccessToken, isEmailVerified, getNoteById);
-router.get('/notes', verifyAccessToken, isEmailVerified, getNotes);
-
+router.post(`/${path}`, verifyAccessToken, isEmailVerified, createNote);
+router.get(`/${path}/:noteId`, verifyAccessToken, isEmailVerified, getNoteById);
+router.get(`/${path}`, verifyAccessToken, isEmailVerified, getNotes);
 router.patch(
-    '/notes/edit-Note/:noteId',
+    `/${path}/:noteId`,
     verifyAccessToken,
     isEmailVerified,
     isNotePermitted,
     editNote
 );
-
 router.delete(
-    '/notes/delete-Note/:noteId',
+    `/${path}/:noteId`,
     verifyAccessToken,
     isEmailVerified,
     isNotePermitted,

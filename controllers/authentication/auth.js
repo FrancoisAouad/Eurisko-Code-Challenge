@@ -45,7 +45,7 @@ export const register = async (req, res, next) => {
           <br/>
          <p>In order to confirm your email, kindly click the verification link below.</p>
           <br/>
-        <a href="http://${req.headers.host}/api/v1/auth/verify-email?token=${user.emailToken}">Click here to verify</a>`,
+        <a href="http://${req.headers.host}/api/v1/auth/verify?token=${user.emailToken}">Click here to verify</a>`,
         });
         //send jwt tokens to client
         res.status(200).send({ accessToken, refreshToken });

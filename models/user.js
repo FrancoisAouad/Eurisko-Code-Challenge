@@ -57,4 +57,8 @@ UserSchema.methods.isValidPassword = async function (password) {
         throw new Error('New Error');
     }
 };
+
+UserSchema.index({ name: -1, _id: -1 });
+UserSchema.index({ isAdmin: -1 });
+UserSchema.index({ isVerified: -1 });
 export default mongoose.model('user', UserSchema);

@@ -14,7 +14,8 @@ export const isCategoryPermitted = async (req, res, next) => {
 
         // categories that have the sam
         const category = await Category.findOne({
-            $and: [{ creatorID: { $eq: id } }, { _id: { $eq: catID } }],
+            creatorID: id,
+            _id: catID,
         });
         //send error when category return null
         if (!category)
@@ -57,7 +58,8 @@ export const isNotePermitted = async (req, res, next) => {
 
         // categories that have the sam
         const note = await Notes.findOne({
-            $and: [{ creatorID: { $eq: id } }, { _id: { $eq: noteID } }],
+            creatorID: id,
+            _id: noteID,
         });
         //send error when note return null
         if (!note)
