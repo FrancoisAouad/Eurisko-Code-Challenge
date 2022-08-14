@@ -5,3 +5,5 @@
 -**Note**: Route for all note CRUD operations + search by tags and by category
 
 -**Category**: Route for all category CRUD operations
+
+-**Admin**: Route for admin CRUD operation + aggregation to fetch user category and tags data
