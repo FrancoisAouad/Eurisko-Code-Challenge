@@ -6,4 +6,4 @@
 
 -**Category**: Route for all category CRUD operations
 
--**Admin**: Route for admin CRUD operation + aggregation to fetch user category and tags data
+-**Admin**: Route for admin  aggregations

@@ -1,5 +1,7 @@
 # Eurisko-REST-NoteApp-API
 
+**List of updated changes is available inside the Project updated txt file**
+
 The goal for this project is to create a basic REST API using nodeJS and the Express framework as the runtime environment, as well as having mongoDB as the main database. The API will also be able to perform basic CRUD operations on the notes, and Category. The user is also able to filter result by category, and search for notes with matching tags. 
 
 The tools and libraries used to complete the project are the following:
