@@ -23,14 +23,25 @@ export const createNote = async (req, res, next) => {
         //validate input
         const { title, content, tags, category } =
             await noteSchema.validateAsync(req.body);
-
+        const cat = await categories.findOne({
+            categoryName: category,
+            creatorID: id,
+        });
+        if (!cat)
+            return res
+                .status(404)
+                .json({
+                    success: false,
+                    error: 'NotFound',
+                    message: 'no such category found..',
+                });
         const newNote = await Notes.create({
             creatorID: id,
             title: title,
             content: content,
+            categoryID: cat._id,
             creatorEmail: UserInfo.email,
             creatorName: UserInfo.name,
-            category: category,
         });
 
         //call helper function to add tags and create documents
@@ -66,6 +77,7 @@ export const createNote = async (req, res, next) => {
             return res.status(201).json({
                 success: true,
                 message: 'Note added!',
+                note: newNote,
             });
         }
     } catch (e) {

@@ -82,7 +82,7 @@ export const getUsersByCateg = async (req, res, next) => {
             {
                 //we group by the specific category name
                 $group: {
-                    _id: '$categoryID._ID',
+                    _id: '$categoryID._id',
                     //save the category name
                     name: { $first: '$categoryID.categoryName' },
                     //push all the notes that fit the grouping inside the notes array
@@ -93,6 +93,7 @@ export const getUsersByCateg = async (req, res, next) => {
                             content: '$content',
                         },
                     },
+
                     //add creatorid
                     creatorID: { $first: '$creatorID' },
                     //push user IIDs into the users array for unique elements and dont allow duplicates
