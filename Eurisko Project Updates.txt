@@ -9,7 +9,7 @@
 9-added creatorsID field to tag document since it is a many to many relationship
 10-updated getNotes using conditional match
 11-fixed pagination by sending totalRecords, page, limit and TotalPages
-12-fixed route naming by removing - and dynamically changing common endpoint name
+12-fixed notes.js route naming by removing - and dynamically changing common endpoint name
 
 ****Old Updates 1/8/2022****
 

@@ -1,10 +1,6 @@
 import Notes from '../../models/notes.js';
 import path from 'path';
-// import user from '../../models/user.js';
 import tagModel from '../../models/tags.js';
-// import categories from '../../models/category.js';
-// import { getUser } from '../../utils/getUser.js';
-// import { noteSchema } from '../../middleware/validation/notesValidation.js';
 import createError from 'http-errors';
 
 export async function pushImageFile(image, file, __dirname, newNote) {
