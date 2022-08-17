@@ -52,7 +52,6 @@ export const getNbOfUserCategory = async (req, res, next) => {
                 },
             },
         ]);
-
         return res.status(200).json({ success: true, categories: result });
     } catch (e) {
         next(e);
@@ -70,7 +69,6 @@ export const getUsersByCateg = async (req, res, next) => {
                 error: 'NotFound',
                 message: 'Category not found... ',
             });
-
         const notesByCateg = await Notes.aggregate([
             {
                 //join the categories collection to the notes to get additional data
@@ -97,7 +95,6 @@ export const getUsersByCateg = async (req, res, next) => {
                             content: '$content',
                         },
                     },
-
                     //add creatorid
                     creatorID: { $first: '$creatorID' },
                     //push user IIDs into the users array for unique elements and dont allow duplicates
@@ -106,7 +103,6 @@ export const getUsersByCateg = async (req, res, next) => {
                     categoryID: { $first: '$categoryID._id' },
                 },
             },
-
             {
                 $project: {
                     //save name that is the only element in the array
@@ -121,7 +117,6 @@ export const getUsersByCateg = async (req, res, next) => {
                 },
             },
         ]);
-
         return res.status(200).json({ success: true, category: notesByCateg });
     } catch (e) {
         next(e);
@@ -173,7 +168,6 @@ export const listNbrOfNotes = async (req, res, next) => {
 export const getNotesByTags = async (req, res, next) => {
     try {
         const tagsArray = req.query.tags;
-
         const x = tagsArray.split(',');
 
         let tagIDs = [];
@@ -185,11 +179,9 @@ export const getNotesByTags = async (req, res, next) => {
             const tagexists = await tagModel.findOne({
                 tagName: name,
             });
-
             // push the id of the current tag inside the tags embedded document array
             if (tagexists) tagIDs.push(tagexists._id);
         }
-
         const result = await Notes.aggregate([
             //first stage checks the tag swith only the input tags
             { $match: { tags: { $in: tagIDs } } },
@@ -250,7 +242,6 @@ export const getNotesByTags = async (req, res, next) => {
                 },
             },
         ]);
-
         return res.status(200).json({ success: true, notes: result });
     } catch (e) {
         next(e);

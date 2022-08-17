@@ -99,7 +99,10 @@ export const getNotes = async (req, res, next) => {
         }
         //set sort order
         let sortOrder = -1;
-        sort == 'ASC' ? (sortOrder = -1) : (sortOrder = 1);
+        // sort == 'ASC' ? (sortOrder = 11) : (sortOrder = 1);
+        if (sort == 'ASC') {
+            sortOrder = 1;
+        }
         //pagination config
         const limit = req.query.limit || 10;
         const page = req.query.page || 1;
@@ -108,7 +111,6 @@ export const getNotes = async (req, res, next) => {
         //tags and category
         let tags = req.body.tags;
         const category = req.query.category;
-
         //first conditional match for tags
         if (tags) {
             //embedd tags field inside params object
@@ -122,7 +124,6 @@ export const getNotes = async (req, res, next) => {
                     tagName: name,
                     creatorsID: { $in: id },
                 });
-
                 // push the id of the current tag inside the tags embedded document array
                 if (tagexists) {
                     params['tags'].push(tagexists._id);
@@ -160,19 +161,14 @@ export const getNotes = async (req, res, next) => {
         next(e);
     }
 };
-
 //GET SINGLE NOTE
 export const getNoteById = async (req, res, next) => {
     try {
         const authHeader = req.headers['authorization'];
         const id = getUser(authHeader);
-
         const note = await Notes.find({
             creatorID: id,
             _id: req.params.noteId,
-        }).populate({
-            path: 'category',
-            select: ['_id', 'categoryname'],
         });
         if (!note)
             return res.status(404).json({
@@ -193,10 +189,10 @@ export const editNote = async (req, res, next) => {
     try {
         const authHeader = req.headers['authorization'];
         const id = getUser(authHeader);
-
+        const noteId = req.params.noteId;
         //check is note exists with creator id and noteid
         const exists = await Notes.find({
-            creatorID: id,
+            creatorID: ID,
             _id: req.params.noteId,
         });
         if (!exists) {
@@ -206,192 +202,60 @@ export const editNote = async (req, res, next) => {
                 message: 'Note not found..',
             });
         }
+        //set dirname variable
         const __dirname = path.resolve();
+        //validate user input
         const { title, content, tags, category } =
             await noteSchema.validateAsync(req.body);
+        //update note with new input
+        await Notes.updateOne(
+            {
+                _id: req.params.noteId,
+            },
+            {
+                $set: {
+                    title: title,
+                    content: content,
+                    tags: tags,
+                    category: category,
+                    updatedDate: Date.now(),
+                },
+            }
+        );
+
+        //set file and image variable by using chainning
         const image = req?.files?.image;
         const file = req?.files?.file;
         //-------------No Image AND File------------------//
         if (image == (undefined || null) && file != (undefined || null)) {
-            //allowed file types
-            const fileExtension = path.extname(file.name);
-            const allowedExtensionFile = ['.pdf', '.txt', '.docx'];
-
-            if (!allowedExtensionFile.includes(fileExtension)) {
-                return res.status(422).send('Invalid File');
-            }
-            //assign name to file
-            const fileName =
-                new Date().getTime().toString() + path.extname(file.name);
-            //set file location in server
-            const filelocation = path.join(
-                __dirname,
-                'uploads',
-                'files',
-                'notes',
-                fileName
-            );
-            //find this specific note and update this field
-
-            const note = await Notes.updateOne(
-                {
-                    creatorID: id,
-                    _id: req.params.noteId,
-                },
-                {
-                    $push: { attachementLocation: filelocation },
-                    $set: {
-                        title: title,
-                        content: content,
-                        tags: tags,
-                        category: category,
-                        updatedDate: Date.now(),
-                    },
-                }
-            );
-
-            //move file to location
-            await file.mv(filelocation);
+            updateFile(file, __dirname, noteId);
             return res.status(200).json({
                 success: true,
                 message: 'Note Updated!',
-                data: note,
             });
         }
         //-------------Image AND No File------------------//
         if (image != (undefined || null) && file == (undefined || null)) {
-            const imageExtension = path.extname(image.name);
-            console.log(imageExtension);
-            const allowedExtensionImage = ['.png', '.jpg', '.jpeg'];
-
-            if (!allowedExtensionImage.includes(imageExtension)) {
-                return res.status(422).send('Invalid Image');
-            }
-            const imageName =
-                new Date().getTime().toString() + path.extname(image.name);
-
-            const imagelocation = path.join(
-                __dirname,
-                'uploads',
-                'img',
-                'notes',
-                imageName
-            );
-            //note must have same creator id and object id
-            const note = await Notes.updateOne(
-                {
-                    creatorID: id,
-                    _id: req.params.noteId,
-                },
-                {
-                    $push: { imageLocation: imagelocation },
-                    $set: {
-                        title: title,
-                        content: content,
-                        tags: tags,
-                        category: category,
-                        updatedDate: Date.now(),
-                    },
-                }
-            );
-            console.log(note);
-
+            updateImage(image, __dirname, noteId);
             return res.status(200).json({
                 success: true,
                 message: 'Note Updated!',
-                data: note,
             });
         }
         //-------------Image AND File exists------------------//
         if (image != (undefined || null) && file != (undefined || null)) {
-            //validate file and image type
-            const fileExtension = path.extname(file.name);
-            const allowedExtensionFile = ['.pdf', '.txt', '.docx'];
-
-            if (!allowedExtensionFile.includes(fileExtension)) {
-                return res.status(422).send('Invalid File');
-            }
-            const imageExtension = path.extname(image.name);
-            const allowedExtensionImage = ['.png', '.jpg', '.jpeg'];
-
-            if (!allowedExtensionImage.includes(imageExtension)) {
-                return res.status(422).send('Invalid Image');
-            }
-            //assign new names to files and images
-            const imageName =
-                new Date().getTime().toString() + path.extname(image.name);
-
-            const fileName =
-                new Date().getTime().toString() + path.extname(file.name);
-            //initialize the location where the files and will be saved
-            const imagelocation = path.join(
-                __dirname,
-                'uploads',
-                'img',
-                'notes',
-                imageName
-            );
-
-            const filelocation = path.join(
-                __dirname,
-                'uploads',
-                'files',
-                'notes',
-                fileName
-            );
-            // push newly added image to the array with tese fields
-            const note = await Notes.updateOne(
-                {
-                    creatorID: id,
-                    _id: req.params.noteId,
-                },
-                {
-                    $push: {
-                        imageLocation: imagelocation,
-                        attachementLocation: filelocation,
-                    },
-                    $set: {
-                        title: title,
-                        content: content,
-                        tags: tags,
-                        category: category,
-                        updatedDate: Date.now(),
-                    },
-                }
-            );
-
-            //move files to this directory
-            await file.mv(filelocation);
-            await image.mv(imagelocation);
+            updateImageFile(image, file, __dirname, noteId);
 
             return res.status(200).json({
                 success: true,
-                message: 'Note added!',
-                data: note,
+                message: 'Note updated!',
             });
         }
         //-------------No Image AND No File------------------//
         if (!(req.files && req.files.image) && !(req.files && req.files.file)) {
-            const note = await Notes.updateOne(
-                {
-                    creatorID: id,
-                    _id: req.params.noteId,
-                },
-                {
-                    $set: {
-                        title: title,
-                        content: content,
-                        tags: tags,
-                        category: category,
-                        updatedDate: Date.now(),
-                    },
-                }
-            );
-
             return res.status(200).json({
                 success: true,
                 message: 'Note Updated!',
-                data: note,
             });
         }
     } catch (e) {
@@ -402,7 +266,6 @@ export const editNote = async (req, res, next) => {
 export const deleteNote = async (req, res, next) => {
     try {
         const note = await Notes.deleteOne(req.params.noteId);
-
         res.status(201).json({
             success: true,
             message: 'Note Deleted!',

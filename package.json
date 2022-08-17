@@ -28,6 +28,7 @@
     },
     "devDependencies": {
         "colors": "^1.4.0",
+        "eslint": "^8.22.0",
         "morgan": "^1.10.0",
         "nodemon": "^2.0.19"
     }
