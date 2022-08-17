@@ -9,7 +9,6 @@ const noteSchema = new Schema({
     content: {
         type: String,
     },
-    // tags: [{ type: String }],
     tags: [{ type: mongoose.Schema.Types.ObjectId, ref: 'tags' }],
     imageLocation: [
         {

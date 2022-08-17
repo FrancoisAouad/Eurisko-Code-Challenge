@@ -31,6 +31,10 @@ export const getNbOfUserCategory = async (req, res, next) => {
                             noteID: '$_id',
                             title: '$title',
                             content: '$content',
+                            images: '$imageLocation',
+                            attachements: '$attachementLocation',
+                            created: '$createdDate',
+                            updated: '$updatedDate',
                         },
                     },
                 },
@@ -41,7 +45,7 @@ export const getNbOfUserCategory = async (req, res, next) => {
                     categoryName: {
                         $arrayElemAt: ['$categoryName', 0],
                     },
-                    craetorName: 1,
+                    creatorName: 1,
                     creatorID: 1,
                     totalNotes: 1,
                     notes: 1,
@@ -205,15 +209,44 @@ export const getNotesByTags = async (req, res, next) => {
             //final stage project the following fields
             {
                 $project: {
-                    _id: 0,
+                    _id: 1,
                     title: 1,
                     content: 1,
                     tags: '$tags.tagName',
-                    name: '$creatorName',
+                    username: '$creatorName',
                     images: '$imageLocation',
                     attachements: '$attachementLocation',
                     created: '$createdDate',
                     updated: '$updatedDate',
+                },
+            },
+            { $unwind: '$tags' },
+            {
+                $group: {
+                    _id: '$tags',
+                    tag: { $first: '$tags' },
+                    username: { $first: '$username' },
+                    totalTimes: { $sum: 1 },
+                    notes: {
+                        $push: {
+                            noteID: '$_id',
+                            title: '$title',
+                            content: '$content',
+                            images: '$images',
+                            attachements: '$attachements',
+                            created: '$created',
+                            updated: '$updated',
+                        },
+                    },
+                },
+            },
+            {
+                $project: {
+                    _id: 0,
+                    notes: 1,
+                    username: 1,
+                    tag: 1,
+                    totalTimes: 1,
                 },
             },
         ]);

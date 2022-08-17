@@ -9,8 +9,8 @@ import {
     pushFile,
     pushImage,
     pushImageFile,
-    inserTags,
 } from '../../services/notesServices/createNotes.js';
+import { addTags } from '../../utils/addTags.js';
 
 export const createNote = async (req, res, next) => {
     try {
@@ -28,13 +28,11 @@ export const createNote = async (req, res, next) => {
             creatorID: id,
         });
         if (!cat)
-            return res
-                .status(404)
-                .json({
-                    success: false,
-                    error: 'NotFound',
-                    message: 'no such category found..',
-                });
+            return res.status(404).json({
+                success: false,
+                error: 'NotFound',
+                message: 'no such category found..',
+            });
         const newNote = await Notes.create({
             creatorID: id,
             title: title,
@@ -45,7 +43,7 @@ export const createNote = async (req, res, next) => {
         });
 
         //call helper function to add tags and create documents
-        inserTags(tags, newNote, UserInfo);
+        addTags(tags, newNote, UserInfo);
         //initialize image and file chaining operators
         const image = req?.files?.image;
         const file = req?.files?.file;
@@ -53,7 +51,6 @@ export const createNote = async (req, res, next) => {
         /* ADDITIONAL CONDITIONS OF WHEN USER INSERTS FILES AND IMAGES */
         if (image == (undefined || null) && file != (undefined || null)) {
             pushFile(file, __dirname, newNote);
-
             return res.status(201).json({
                 success: true,
                 message: 'Note added!',
@@ -61,6 +58,7 @@ export const createNote = async (req, res, next) => {
         }
         if (image != (undefined || null) && file == (undefined || null)) {
             pushImage(image, __dirname, newNote);
+
             return res.status(201).json({
                 success: true,
                 message: 'Note added!',

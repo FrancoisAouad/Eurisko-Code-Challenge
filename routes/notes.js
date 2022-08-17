@@ -8,7 +8,6 @@ import {
     editNote,
     createNote,
 } from '../controllers/handlers/notes.js';
-
 import { isNotePermitted } from '../middleware/secure/isPermitted.js';
 
 const router = express.Router();
