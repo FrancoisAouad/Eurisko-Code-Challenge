@@ -2,7 +2,7 @@ import express from 'express';
 import { verifyAccessToken } from '../controllers/jwt/verifyJWT.js';
 import { isEmailVerified } from '../middleware/secure/isUserVerified.js';
 import {
-    getNotes2,
+    getNotes,
     getNoteById,
     deleteNote,
     editNote,
@@ -15,7 +15,7 @@ const path = 'notes';
 
 router.post(`/${path}`, verifyAccessToken, isEmailVerified, createNote);
 router.get(`/${path}/:noteId`, verifyAccessToken, isEmailVerified, getNoteById);
-router.get(`/${path}`, verifyAccessToken, isEmailVerified, getNotes2);
+router.get(`/${path}`, verifyAccessToken, isEmailVerified, getNotes);
 router.patch(
     `/${path}/:noteId`,
     verifyAccessToken,

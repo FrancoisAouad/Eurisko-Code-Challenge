@@ -82,85 +82,6 @@ export const createNote = async (req, res, next) => {
         next(e);
     }
 };
-export const getNotes = async (req, res, next) => {
-    try {
-        const authHeader = req.headers['authorization'];
-        const id = getUser(authHeader);
-        let sort = req.query.Sort;
-        //check if category exists
-        const categ = await categories.find({ creatorID: id });
-        //send error if it desnt exist
-        if (!categ) {
-            return res.status(404).json({
-                success: false,
-                error: 'NotFound',
-                message: 'No such Category found..',
-            });
-        }
-        //set sort order
-        let sortOrder = -1;
-        // sort == 'ASC' ? (sortOrder = 11) : (sortOrder = 1);
-        if (sort == 'ASC') {
-            sortOrder = 1;
-        }
-        //pagination config
-        const limit = req.query.limit || 10;
-        const page = req.query.page || 1;
-        //default params object
-        let params = { creatorID: id };
-        //tags and category
-        let tags = req.body.tags;
-        const category = req.query.category;
-        //first conditional match for tags
-        if (tags) {
-            //embedd tags field inside params object
-            params.tags = [];
-            //loop within the tags array
-            for (let i = 0; i < tags.length; i++) {
-                //save name of each input string
-                const name = tags[i];
-                //check if they exist inside the tag collection
-                const tagexists = await tagModel.findOne({
-                    tagName: name,
-                    creatorsID: { $in: id },
-                });
-                // push the id of the current tag inside the tags embedded document array
-                if (tagexists) {
-                    params['tags'].push(tagexists._id);
-                } else if (!tagexists) {
-                    //send error if tag doesnt exist
-                    return res.json({
-                        message: `${name} doesnt exist on any note..`,
-                    });
-                }
-            }
-        }
-        //second conditional match for category
-        if (category) {
-            //add category field params object
-            params.category = category;
-        }
-        //get the total number of notes this user created
-        const totalNotes = await Notes.find({ creatorID: id }).count();
-        //query the database
-        const notes = await Notes.find(params)
-            .sort({ updatedDate: sortOrder })
-            .skip((page - 1) * limit)
-            .limit(limit);
-        //send response
-        const Total = totalNotes / page;
-        return res.status(200).json({
-            success: true,
-            TotalRecords: totalNotes,
-            Limit: limit,
-            TotalPages: Total,
-            Note: notes,
-            Page: page,
-        });
-    } catch (e) {
-        next(e);
-    }
-};
 //GET SINGLE NOTE
 export const getNoteById = async (req, res, next) => {
     try {
@@ -283,7 +204,7 @@ export const deleteNote = async (req, res, next) => {
     }
 };
 
-export const getNotes2 = async (req, res, next) => {
+export const getNotes = async (req, res, next) => {
     try {
         const authHeader = req.headers['authorization'];
         const id = getUser(authHeader);
