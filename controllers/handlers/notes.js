@@ -282,3 +282,171 @@ export const deleteNote = async (req, res, next) => {
         next(e);
     }
 };
+
+export const getNotes2 = async (req, res, next) => {
+    try {
+        const authHeader = req.headers['authorization'];
+        const id = getUser(authHeader);
+
+        let sort = req.query.Sort;
+        //get objectId of user
+        const loguser = await user.findOne({ _id: id });
+        let sortOrder = -1;
+        if (sort == 'ASC') {
+            sortOrder = 1;
+        }
+        //pagination config
+        const limit = req.query.limit || 10;
+        const page = req.query.page || 1;
+        //defaulr param object if no filtering and searching input sent
+        let params = [{ $match: { creatorID: loguser._id } }];
+        //general aggregation stages for all cases
+        let skipObj = {
+            $skip: (page - 1) * limit,
+        };
+        let limitObj = {
+            $limit: limit,
+        };
+        let sortObj = {
+            $sort: { updatedDate: -1 },
+        };
+        //user inputs tags
+        if (req.body.tags) {
+            //save body inside tags array
+            let tags = req.body.tags;
+            //set empty tags array that will store tags objectID
+            let tagsArray = [];
+            for (let i = 0; i < tags.length; i++) {
+                const name = tags[i];
+                const tagexists = await tagModel.findOne({
+                    tagName: name,
+                    creatorsID: { $in: id },
+                });
+
+                if (tagexists) {
+                    //push id if tags exist
+                    tagsArray.push(tagexists._id);
+                } else if (!tagexists) {
+                    return res.json({
+                        message: `${name} doesnt exist on any note..`,
+                    });
+                }
+            }
+            //stage that matches all user notes with these categories
+            let tagsObjMatch = {
+                $match: { tags: { $in: tagsArray } },
+            };
+            //stage that will join tags collection to notes
+            let tagsObjLookup = {
+                $lookup: {
+                    from: 'tags',
+                    localField: 'tags',
+                    foreignField: '_id',
+                    as: 'tags',
+                },
+            };
+            //final stage that will project info needed for client side
+            let tagsProjectObj = {
+                $project: {
+                    _id: 0,
+                    noteID: '$_id',
+                    title: 1,
+                    content: 1,
+                    tags: '$tags.tagName',
+                    imaage: '$imageLocation',
+                    attachement: '$attachementLocation',
+                    created: '$createdDate',
+                    updated: '$updatedDate',
+                },
+            };
+            //push all object into the params array as aggregation stages
+            params.push(
+                tagsObjMatch,
+                tagsObjLookup,
+                skipObj,
+                limitObj,
+                sortObj,
+                tagsProjectObj
+            );
+        }
+        //user inputs category
+        if (req.query.category) {
+            //save category id inside variable for query
+            const category = req.query.category;
+            //find this specific document
+            const categ = await categories.findOne({
+                creatorID: id,
+                _id: category,
+            });
+
+            if (!categ) {
+                return res.status(404).json({
+                    success: false,
+                    error: 'NotFound',
+                    message: 'No such Category found..',
+                });
+            }
+            //stage that checks all documents with this categoryid
+            let ObjCategory = { $match: { categoryID: categ._id } };
+            //joins tags to notes
+            let categoryObjLookupTags = {
+                $lookup: {
+                    from: 'tags',
+                    localField: 'tags',
+                    foreignField: '_id',
+                    as: 'tags',
+                },
+            };
+            //joins category to notes
+            let categoryLookup = {
+                $lookup: {
+                    from: 'categories',
+                    localField: 'categoryID',
+                    foreignField: '_id',
+                    as: 'categoryID',
+                },
+            };
+            //project needed info to frontend
+            let projectCategories = {
+                $project: {
+                    _id: 0,
+                    noteID: '$_id',
+                    title: 1,
+                    content: 1,
+                    category: { $arrayElemAt: ['$categoryID.categoryName', 0] },
+                    tags: '$tags.tagName',
+                    images: '$imageLocation',
+                    attachement: '$attachementLocation',
+                    created: '$createdDate',
+                    updated: '$updatedDate',
+                },
+            };
+            //push aggregation stages to params
+            params.push(
+                ObjCategory,
+                categoryObjLookupTags,
+                categoryLookup,
+                skipObj,
+                limitObj,
+                sortObj,
+                projectCategories
+            );
+        }
+        //get total number of notes
+        const totalNotes = await Notes.find({ creatorID: id }).count();
+        //aggregation
+        const notes = await Notes.aggregate(params);
+        //data response
+        const Total = totalNotes / page;
+        return res.status(200).json({
+            success: true,
+            TotalRecords: totalNotes,
+            Limit: limit,
+            TotalPages: Total,
+            Note: notes,
+            Page: page,
+        });
+    } catch (e) {
+        next(e);
+    }
+};

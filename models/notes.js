@@ -28,7 +28,7 @@ const noteSchema = new Schema({
     },
 
     creatorID: {
-        type: mongoose.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'user',
     },
     creatorName: {

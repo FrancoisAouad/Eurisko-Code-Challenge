@@ -1,3 +1,12 @@
+****Current Updates 18/8/2022****
+
+1-fixed byTags aggregation in admin.js files
+2-refactored editNotes function
+3-added editnotes Service
+4-created uploadhelper file for more reusability in the code 
+5-added getfilelocation, getimagelocation, checkimagetype, checkfiletype
+6-refactored getNotes function to use aggregation() instead of find()
+
 **Current Updates 14/8/2022****
 
 1-added all 4 aggregations to admin controller
