@@ -10,6 +10,11 @@ import {
     pushImage,
     pushImageFile,
 } from '../../services/notesServices/createNotes.js';
+import {
+    updateFile,
+    updateImage,
+    updateImageFile,
+} from '../../services/notesServices/editNotes.js';
 import { addTags } from '../../utils/addTags.js';
 
 export const createNote = async (req, res, next) => {
@@ -113,7 +118,7 @@ export const editNote = async (req, res, next) => {
         const noteId = req.params.noteId;
         //check is note exists with creator id and noteid
         const exists = await Notes.find({
-            creatorID: ID,
+            creatorID: id,
             _id: req.params.noteId,
         });
         if (!exists) {
