@@ -1,4 +1,4 @@
-# Eurisko-REST-NoteApp-API
+# Eurisko NodeJS Code Challenge
 
 **List of updated changes is available inside the Project updates txt file**
 
